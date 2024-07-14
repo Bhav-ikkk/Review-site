@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link href="./styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background"></div>
+    <nav class="navbar">
+      <img class="navbar-logo" src="assets/logo.png" />
+      <input type="text" placeholder="Search" class="navbar-search" />
+    <button id="profileBtn" class="profile-btn" onclick="toggleProfileMenu()">&#128100;</button>
+    </nav>
+    <div id="profileMenu" class="profile-menu">
+        <ul>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#help-center">Help Center</a></li>
+            <li><a href="#logout">Log Out</a></li>
+        </ul>
+    </div>
+    <script>
+        function toggleProfileMenu() {
+            var profileMenu = document.getElementById("profileMenu");
+            if (profileMenu.classList.contains('show')) {
+                profileMenu.classList.remove('show');
+                setTimeout(function() {
+                    profileMenu.style.display = 'none';
+                }, 300);
+            } else {
+                profileMenu.style.display = 'block';
+                setTimeout(function() {
+                    profileMenu.classList.add('show');
+                }, 0);
+            }
+        }
+
+        // Function to update profile photo
+        function updateProfilePhoto(photoUrl) {
+            var profileBtn = document.getElementById("profileBtn");
+            profileBtn.innerHTML = `<img src="${photoUrl}" alt="Profile Photo">`;
+        }
+
+        // Function to reset to default profile icon
+        function resetProfileIcon() {
+            var profileBtn = document.getElementById("profileBtn");
+            profileBtn.innerHTML = "&#128100;"; // Default profile icon
+        }
+
+        // Check if user is authenticated (simulated)
+        var isAuthenticated = false; // Replace with actual authentication status check
+
+        if (isAuthenticated) {
+            // Simulated user details (replace with actual implementation)
+            var userDetails = {
+                photoUrl: "https://example.com/user/photo.jpg" // Replace with actual photo URL
+            };
+            updateProfilePhoto(userDetails.photoUrl);
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-btn')) {
+                var profileMenu = document.getElementById("profileMenu");
+                if (profileMenu.classList.contains('show')) {
+                    profileMenu.classList.remove('show');
+                    setTimeout(function() {
+                        profileMenu.style.display = 'none';
+                    }, 300);
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+      const toggleMenu = () => {
+        document.body.classList.toggle("open");
+      };
+    </script>
+
+    
+
+    
+  </body>
+</html>
