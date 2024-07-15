@@ -1,0 +1,18 @@
+/* Additional custom styles */
+@media (min-width: 601px) {
+    .review {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (min-width: 901px) {
+    .review {
+        width: calc(33.33% - 40px);
+    }
+}
+
+@media (max-width: 600px) {
+    .review {
+        width: 100%;
+    }
+}

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Warfare - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+
+        /* Reset styles and basic layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #111;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.hero {
+    position: relative;
+    height: 400px;
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: fadeInDown 1s ease-in-out;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.cta-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #2980b9;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.animated-elements {
+    position: absolute;
+    bottom: -100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.featured-restaurants {
+    margin-top: 3rem;
+}
+
+.restaurant-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.restaurant-card {
+    background-color: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #444;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.restaurant-info {
+    margin-top: 1rem;
+}
+
+.restaurant-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.restaurant-info p {
+    margin-bottom: 0.5rem;
+}
+
+.scrollable-reviews {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    background-color: #111;
+    text-align: center;
+}
+
+.scrollable-reviews h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.review-container {
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 1rem 0;
+}
+
+.review {
+    display: inline-block;
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-right: 1rem;
+    width: 300px;
+    vertical-align: top;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.review img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #444;
+    border-radius: 8px;
+}
+
+.review-info {
+    margin-top: 1rem;
+}
+
+.review-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.review-info p {
+    margin-bottom: 0.5rem;
+    color: #bbb;
+}
+
+.user-review {
+    font-style: italic;
+    color: #ccc;
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Restaurant Warfare</h1>
+            <p>Deploy your reviews, conquer tastes.</p>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="fade-in">Join the Battle of Taste!</h2>
+                <p class="slide-in">Experience restaurant reviews like never before.</p>
+                <a href="#" class="cta-button pulse">Start Now</a>
+            </div>
+            <div class="animated-elements">
+                <div class="animated-foods">
+                    <div class="food-item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2276/2276941.png" alt="Food 1">
+                    </div>
+                    <div class="food-item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/737/737967.png" alt="Food 2">
+                    </div>
+                </div>
+                <div class="animated-restaurants">
+                    <div class="restaurant-item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/531/531153.png" alt="Restaurant 1">
+                    </div>
+                    <div class="restaurant-item">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3207/3207949.png" alt="Restaurant 2">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="featured-restaurants">
+            <h2>Featured Restaurants</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card slide-up">
+                    <img src="restaurant1.jpg" alt="Restaurant 1">
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name</h3>
+                        <p>Location: City, State</p>
+                        <p>Rating: 4.5</p>
+                        <a href="#" class="review-button">Review</a>
+                    </div>
+                </div>
+                <div class="restaurant-card slide-up">
+                    <img src="restaurant2.jpg" alt="Restaurant 2">
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name</h3>
+                        <p>Location: City, State</p>
+                        <p>Rating: 4.2</p>
+                        <a href="#" class="review-button">Review</a>
+                    </div>
+                </div>
+                <div class="restaurant-card slide-up">
+                    <img src="restaurant3.jpg" alt="Restaurant 3">
+                    <div class="restaurant-info">
+                        <h3>Restaurant Name</h3>
+                        <p>Location: City, State</p>
+                        <p>Rating: 4.7</p>
+                        <a href="#" class="review-button">Review</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="scrollable-reviews">
+            <h2>Latest Reviews</h2>
+            <div class="review-container">
+                <div class="review slide-left">
+                    <img src="restaurant2.jpg" alt="Restaurant 2">
+                    <div class="review-info">
+                        <h3>Restaurant Name</h3>
+                        <p>Location: City, State</p>
+                        <p>Rating: 4.2</p>
+                        <p class="user-review">"Great food and ambiance, highly recommended!"</p>
+                    </div>
+                </div>
+                <div class="review slide-left">
+                    <img src="restaurant1.jpg" alt="Restaurant 1">
+                    <div class="review-info">
+                        <h3>Restaurant Name</h3>
+                        <p>Location: City, State</p>
+                        <p>Rating: 4.5</p>
+                        <p class="user-review">"Awesome experience, loved the dishes!"</p>
+                    </div>
+                </div>
+                <div class="review slide-left">
+                    <img src="restaurant3.jpg" alt="Restaurant 3">
+                    <div class="review-info">
+                        <h3>Restaurant Name</h3>
+                        <p>Location: City, State</p>
+                        <p>Rating: 4.7</p>
+                        <p class="user-review">"Best place for a family dinner, great service!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Restaurant Warfare. All rights reserved.</p>
+    </footer>
+    
+    <script src="scripts.js">
+
+        // JavaScript for scroll to top button
+const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+// Scroll to top button functionality
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// JavaScript for smooth scrolling reviews
+document.querySelectorAll('.scrollable-reviews .review').forEach(item => {
+    item.addEventListener('click', () => {
+        item.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    });
+});
+
+  // JavaScript for interactivity
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scrolling for internal links
+    const links = document.querySelectorAll('nav ul li a');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Adding active class to navigation links based on scroll position
+    const sections = document.querySelectorAll('section');
+    const navLi = document.querySelectorAll('nav ul li');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100; // Adjust offset for better accuracy
+            if (pageYOffset >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLi.forEach(li => {
+            li.classList.remove('active');
+            if (li.querySelector('a').getAttribute('href').substring(1) === current) {
+                li.classList.add('active');
+            }
+        });
+    });
+});
+
+
+    </script>
+</body>
+</html>
