@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link href="/navbar/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background"></div>
+    <nav class="navbar">
+      <img class="navbar-logo" src="assets/logo.png" />
+      <input type="text" placeholder="Search" class="navbar-search" />
+      <button id="profileBtn" class="profile-btn" onclick="toggleProfileMenu()">&#128100;</button>
+    </nav>
+    <div id="profileMenu" class="profile-menu">
+        <ul>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#help-center">Help Center</a></li>
+            <li><a href="#logout">Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm">
+      <input type="text" id="signupUsername" placeholder="Username" required />
+      <input type="email" id="signupEmail" placeholder="Email" required />
+      <input type="password" id="signupPassword" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+      function toggleProfileMenu() {
+        var profileMenu = document.getElementById("profileMenu");
+        if (profileMenu.classList.contains('show')) {
+          profileMenu.classList.remove('show');
+          setTimeout(function() {
+            profileMenu.style.display = 'none';
+          }, 300);
+        } else {
+          profileMenu.style.display = 'block';
+          setTimeout(function() {
+            profileMenu.classList.add('show');
+          }, 0);
+        }
+      }
+
+      function updateProfilePhoto(photoUrl) {
+        var profileBtn = document.getElementById("profileBtn");
+        profileBtn.innerHTML = `<img src="${photoUrl}" alt="Profile Photo">`;
+      }
+
+      function resetProfileIcon() {
+        var profileBtn = document.getElementById("profileBtn");
+        profileBtn.innerHTML = "&#128100;";
+      }
+
+      var isAuthenticated = false;
+
+      if (isAuthenticated) {
+        var userDetails = {
+          photoUrl: "https://example.com/user/photo.jpg"
+        };
+        updateProfilePhoto(userDetails.photoUrl);
+      }
+
+      window.onclick = function(event) {
+        if (!event.target.matches('.profile-btn')) {
+          var profileMenu = document.getElementById("profileMenu");
+          if (profileMenu.classList.contains('show')) {
+            profileMenu.classList.remove('show');
+            setTimeout(function() {
+              profileMenu.style.display = 'none';
+            }, 300);
+          }
+        }
+      }
+
+      document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const response = await fetch('/signin', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const result = await response.text();
+        alert(result);
+      });
+
+      document.getElementById('signupForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+
+        const response = await fetch('/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const result = await response.text();
+        alert(result);
+      });
+    </script>
+   
+  </body>
+</html>
